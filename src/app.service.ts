@@ -38,6 +38,14 @@ export async function deleteJatek(id: number) {
 
 }
 
+export async function modositJatek(body: { id: string, name: string }) {
+  await mysqlConnection.execute(
+    "UPDATE `jatekok` SET `nev`=? WHERE `id`=?",
+    [body.name, body.id]
+  )
+
+}
+
 export async function createJatek(nev: string) {
   // Több paraméter használata:
   const jatekok = await getJatekok()

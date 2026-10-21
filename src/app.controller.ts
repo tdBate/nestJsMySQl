@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
-import { AppService, createJatek, deleteJatek, getJatekok, getMacskak } from './app.service.js';
+import { AppService, createJatek, deleteJatek, getJatekok, getMacskak, modositJatek } from './app.service.js';
 
 @Controller()
 export class AppController {
@@ -35,6 +35,27 @@ export class AppController {
     await deleteJatek(id)
     return {
       data: await getJatekok()
+    }
+  }
+
+  @Get("modositKezd")
+  @Render("jatekok")
+  async getJatekModositKezd(@Query("id") id: number) {
+    const jatekok = await getJatekok()
+    return {
+      selectedElement: jatekok.find(item => item.id == id),
+      data: jatekok
+    }
+  }
+
+  @Post("modositVeg")
+  @Render("jatekok")
+  async getJatekModositVeg(@Body() body: { id: string, name: string }) {
+
+    await modositJatek(body)
+    const jatekok = await getJatekok()
+    return {
+      data: jatekok
     }
   }
 

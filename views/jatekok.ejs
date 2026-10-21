@@ -8,22 +8,35 @@
 </head>
 
 <body>
-    <table>
-        <% data.forEach(element=> {
-            %> <tr>
-                <td>
-                    <%=element.id%>
-                </td>
-                <td>
-                    <%=element.nev%>
-                </td>
 
-                <td>
-                    <button onclick="window.location.href='deleteJatek?id=<%= element.id %>'">Törlés</button>
-                </td>
-            </tr>
-            <% }); %>
-    </table>
+    <% if (locals.selectedElement) { %>
+        <form action="/modositVeg" method="post">
+            <input readonly value="<%= selectedElement.id %>" name="id" type="number"><br>
+            <input name="name" value="<%= selectedElement.nev %>" type="text"><br>
+            <button type="submit">Elküld</button>
+        </form>
+        <% } %>
+
+            <table>
+                <% data.forEach(element=> {
+                    %> <tr>
+                        <td>
+                            <%=element.id%>
+                        </td>
+                        <td>
+                            <%=element.nev%>
+                        </td>
+
+                        <td>
+                            <button onclick="window.location.href='deleteJatek?id=<%= element.id %>'">Törlés</button>
+                        </td>
+
+                        <td>
+                            <button onclick="window.location.href='modositKezd?id=<%= element.id %>'">Modosit</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </table>
 </body>
 
 </html>
