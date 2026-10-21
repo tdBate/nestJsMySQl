@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import mysql from 'mysql2/promise';
-import { Macska } from './models.js';
+import { Jatek, Macska } from './models.js';
 const mysqlConnection = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -17,7 +17,16 @@ export async function getMacskak() {
   );
   // A select végeredménye objektumokból álló lista. Típusosan kapjuk vissza.
   const rows = results as Macska[];
-  console.log(rows[0].szem_szin)
+  return rows;
+}
+
+export async function getJatekok() {
+  // Minden DB művelet aszinkron
+  const [results] = await mysqlConnection.execute(
+    'SELECT * FROM jatekok',
+  );
+  // A select végeredménye objektumokból álló lista. Típusosan kapjuk vissza.
+  const rows = results as Jatek[];
   return rows;
 }
 

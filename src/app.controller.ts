@@ -1,5 +1,5 @@
 import { Controller, Get, Render } from '@nestjs/common';
-import { AppService, getMacskak } from './app.service.js';
+import { AppService, getJatekok, getMacskak } from './app.service.js';
 
 @Controller()
 export class AppController {
@@ -18,6 +18,14 @@ export class AppController {
   async macskak() {
     return {
       data: await getMacskak()
+    }
+  }
+
+  @Get("jatekok")
+  @Render("jatekok")
+  async jatekok() {
+    return {
+      data: await getJatekok()
     }
   }
 }
