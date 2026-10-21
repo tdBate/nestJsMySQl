@@ -30,6 +30,16 @@ export async function getJatekok() {
   return rows;
 }
 
+export async function createJatek(nev: string) {
+  // Több paraméter használata:
+  const jatekok = await getJatekok()
+  const [results] = await mysqlConnection.execute(
+    'INSERT INTO jatekok (id, nev) VALUES (?, ?)',
+    [jatekok[jatekok.length - 1].id + 1, nev]
+  );
+
+}
+
 @Injectable()
 export class AppService {
   getHello(): string {

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post">
+        <label for="name">Név:</label><input name="name" type="text"><br>
+        <button type="submit">Felvétel</button>
+    </form>
+
+    <div>
+        <% if (message=="" ) {} else if(message !="success" ) { %>
+            <p style="color: red;">Nevet meg kell adni</p>
+            <% } else if (message=="success" ) { %>
+                <p style="color: green;">Sikeres feltöltés!</p>
+                <%} %>
+    </div>
+</body>
+
+</html>

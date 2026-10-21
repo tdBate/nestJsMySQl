@@ -1,5 +1,5 @@
-import { Controller, Get, Query, Render } from '@nestjs/common';
-import { AppService, getJatekok, getMacskak } from './app.service.js';
+import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
+import { AppService, createJatek, getJatekok, getMacskak } from './app.service.js';
 
 @Controller()
 export class AppController {
@@ -36,6 +36,25 @@ export class AppController {
 
     return {
       data: (await getMacskak()).filter(a => a.szem_szin.includes(szemszin))
+    }
+  }
+
+  @Get("ujJatek")
+  @Render("ujJatek")
+  async getUjJatek() {
+    return { message: "" }
+  }
+
+  @Post("ujJatek")
+  @Render("ujJatek")
+  async postUjJatek(@Body() body: { name: string }) {
+
+    if (!body.name) { return { message: "nevet meg kell adni" } }
+
+    await createJatek(body.name)
+
+    return {
+      message: "success"
     }
   }
 }
