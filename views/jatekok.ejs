@@ -17,6 +17,10 @@
                 <td>
                     <%=element.nev%>
                 </td>
+
+                <td>
+                    <button onclick="window.location.href='deleteJatek?id=<%= element.id %>'">Törlés</button>
+                </td>
             </tr>
             <% }); %>
     </table>

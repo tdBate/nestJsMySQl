@@ -20,15 +20,6 @@ export async function getMacskak() {
   return rows;
 }
 
-//DELETE FROM `macskak` WHERE 0
-export async function deleteMacska(id: number) {
-  await mysqlConnection.execute(
-    "DELETE FROM `macskak` WHERE id=?",
-    [id]
-  )
-
-}
-
 export async function getJatekok() {
   // Minden DB művelet aszinkron
   const [results] = await mysqlConnection.execute(
@@ -37,6 +28,14 @@ export async function getJatekok() {
   // A select végeredménye objektumokból álló lista. Típusosan kapjuk vissza.
   const rows = results as Jatek[];
   return rows;
+}
+
+export async function deleteJatek(id: number) {
+  await mysqlConnection.execute(
+    "DELETE FROM `jatekok` WHERE id=?",
+    [id]
+  )
+
 }
 
 export async function createJatek(nev: string) {

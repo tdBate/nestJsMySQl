@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
-import { AppService, createJatek, deleteMacska, getJatekok, getMacskak } from './app.service.js';
+import { AppService, createJatek, deleteJatek, getJatekok, getMacskak } from './app.service.js';
 
 @Controller()
 export class AppController {
@@ -21,18 +21,18 @@ export class AppController {
     }
   }
 
-  @Get("deleteMacska")
-  @Render("macskak")
-  async getDeleteMacska(@Query("id") id: number) {
-    await deleteMacska(id)
-    return {
-      data: await getMacskak()
-    }
-  }
-
   @Get("jatekok")
   @Render("jatekok")
   async jatekok() {
+    return {
+      data: await getJatekok()
+    }
+  }
+
+  @Get("deleteJatek")
+  @Render("jatekok")
+  async getDeleteJatek(@Query("id") id: number) {
+    await deleteJatek(id)
     return {
       data: await getJatekok()
     }
