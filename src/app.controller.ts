@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService, getJatekok, getMacskak } from './app.service.js';
 
 @Controller()
@@ -26,6 +26,16 @@ export class AppController {
   async jatekok() {
     return {
       data: await getJatekok()
+    }
+  }
+
+  @Get("macskaKeres")
+  @Render("filterMacskak")
+  async filterMacskak(@Query("szemszin") szemszin: string) {
+    if (!szemszin) return { data: await getMacskak() }
+
+    return {
+      data: (await getMacskak()).filter(a => a.szem_szin.includes(szemszin))
     }
   }
 }
