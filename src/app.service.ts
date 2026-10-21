@@ -20,6 +20,15 @@ export async function getMacskak() {
   return rows;
 }
 
+//DELETE FROM `macskak` WHERE 0
+export async function deleteMacska(id: number) {
+  await mysqlConnection.execute(
+    "DELETE FROM `macskak` WHERE id=?",
+    [id]
+  )
+
+}
+
 export async function getJatekok() {
   // Minden DB művelet aszinkron
   const [results] = await mysqlConnection.execute(

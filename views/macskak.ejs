@@ -26,6 +26,10 @@
                 <td>
                     <%=element.jatek_id%>
                 </td>
+
+                <td>
+                    <button onclick="window.location.href='deleteMacska?id=<%= element.id %>'">Törlés</button>
+                </td>
             </tr>
             <% }); %>
     </table>
